@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoConsciente - Consumo Sustentável</title>
+    <style>
+        :root {
+            --primary-color: #3a7d44;
+            --secondary-color: #6eb257;
+            --accent-color: #f2c94c;
+            --dark-color: #2c5530;
+            --light-color: #f5f5f5;
+            --text-color: #333333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav {
+            background-color: var(--dark-color);
+            padding: 1rem 0;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        nav a:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .hero {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #e0b73b;
+            transform: translateY(-3px);
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .feature-card {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .section {
+            margin-bottom: 3rem;
+        }
+        
+        .section h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100px;
+            height: 3px;
+            background-color: var(--secondary-color);
+        }
+        
+        .eco-tips {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .tip-card {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tip-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .calculadora {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .result {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 1rem;
+            border-radius: 4px;
+            text-align: center;
+            margin-top: 1rem;
+            display: none;
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: left;
+            padding: 0 1rem;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent-color);
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+                align-items: center;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>EcoConsciente</h1>
+        <p>Consumo Sustentável para um Planeta Melhor</p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#inicio">Início</a></li>
+            <li><a href="#dicas">Dicas Sustentáveis</a></li>
+            <li><a href="#calculadora">Calculadora Ecológica</a></li>
+            <li><a href="#locais">Pontos de Reciclagem</a></li>
+            <li><a href="#sobre">Sobre</a></li>
+        </ul>
+    </nav>
+    
+    <main>
+        <section id="inicio" class="hero">
+            <h2>Faça Parte da Mudança</h2>
+            <p>O consumo sustentável é uma das principais formas de garantir um futuro melhor para o planeta. Descubra como pequenas mudanças em seus hábitos diários podem fazer uma grande diferença para o meio ambiente.</p>
+            <a href="#calculadora" class="btn">Calcule sua Pegada Ecológica</a>
+        </section>
+        
+        <section class="features">
+            <div class="feature-card">
+                <h3>Redução de Desperdício</h3>
+                <p>Aprenda como reduzir o desperdício de alimentos, água e energia em sua casa e contribua para a diminuição da pegada ecológica.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Reciclagem Inteligente</h3>
+                <p>Conheça as melhores práticas para separação de resíduos e localização de pontos de coleta seletiva em sua cidade.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Consumo Consciente</h3>
+                <p>Descubra como fazer escolhas mais inteligentes na hora das compras, privilegiando produtos e empresas que respeitam o meio ambiente.</p>
+            </div>
+        </section>
+        
+        <section id="dicas" class="section">
+            <h2>Dicas para Consumo Sustentável</h2>
+            <div class="eco-tips">
+                <div class="tip-card">
+                    <h3>Na Alimentação</h3>
+                    <ul>
+                        <li>Prefira alimentos da época e produzidos localmente</li>
+                        <li>Reduza o consumo de carne</li>
+                        <li>Evite produtos ultraprocessados</li>
+                        <li>Utilize sacolas reutilizáveis para compras</li>
+                        <li>Planeje suas refeições para evitar desperdício</li>
+                    </ul>
+                </div>
+                <div class="tip-card">
+                    <h3>Em Casa</h3>
+                    <ul>
+                        <li>Desligue aparelhos que não estão em uso</li>
+                        <li>Utilize lâmpadas LED de baixo consumo</li>
+                        <li>Separe corretamente o lixo para reciclagem</li>
+                        <li>Economize água em atividades diárias</li>
+                        <li>Dê preferência a produtos de limpeza biodegradáveis</li>
+                    </ul>
+                </div>
+                <div class="tip-card">
+                    <h3>No Consumo Geral</h3>
+                    <ul>
+                        <li>Questione-se: "Preciso realmente comprar isso?"</li>
+                        <li>Verifique a origem e composição dos produtos</li>
+                        <li>Procure por certificações ambientais</li>
+                        <li>Prefira produtos duráveis a descartáveis</li>
+                        <li>Doe ou recicle itens que não usa mais</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section id="calculadora" class="section">
+            <h2>Calculadora de Pegada Ecológica</h2>
+            <p>Descubra o impacto de seus hábitos de consumo no meio ambiente com nossa calculadora simplificada.</p>
+            
+            <div class="calculadora">
+                <div class="form-group">
+                    <label for="consumo-agua">Consumo médio de água por mês (m³):</label>
+                    <input type="number" id="consumo-agua" min="0" step="1" placeholder="Ex: 10">
+                </div>
+                
+                <div class="form-group">
+                    <label for="consumo-energia">Consumo médio de energia por mês (kWh):</label>
+                    <input type="number" id="consumo-energia" min="0" step="1" placeholder="Ex: 200">
+                </div>
+                
+                <div class="form-group">
+                    <label for="consumo-carne">Frequência de consumo de carne:</label>
+                    <select id="consumo-carne">
+                        <option value="0">Não consumo (vegetariano/vegano)</option>
+                        <option value="1">1-2 vezes por semana</option>
+                        <option value="2">3-4 vezes por semana</option>
+                        <option value="3">Todos os dias</option>
+                        <option value="4">Mais de uma vez por dia</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="transporte">Principal meio de transporte:</label>
+                    <select id="transporte">
+                        <option value="0">A pé ou bicicleta</option>
+                        <option value="1">Transporte público</option>
+                        <option value="2">Carro compartilhado</option>
+                        <option value="3">Carro individual</option>
+                        <option value="4">SUV ou veículo grande</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="reciclagem">Você separa lixo para reciclagem?</label>
+                    <select id="reciclagem">
+                        <option value="0">Sempre, com atenção a todos os materiais</option>
+                        <option value="1">Frequentemente, os principais materiais</option>
+                        <option value="2">Ocasionalmente</option>
+                        <option value="3">Raramente</option>
+                        <option value="4">Nunca</option>
+                    </select>
+                </div>
+                
+                <button onclick="calcularPegada()" class="btn">Calcular</button>
+                
+                <div id="resultado" class="result">
+                    Sua pegada ecológica está em: <span id="valor-pegada">0</span> pontos
+                    <p id="feedback"></p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="locais" class="section">
+            <h2>Pontos de Reciclagem</h2>
+            <p>Confira alguns dos principais pontos de coleta seletiva disponíveis. Para ver os locais mais próximos, insira seu CEP:</p>
+            
+            <div class="form-group">
+                <input type="text" id="cep" placeholder="Digite seu CEP">
+                <button class="btn" style="margin-top: 10px;">Buscar</button>
+            </div>
+            
+            <div class="eco-tips">
+                <div class="tip-card">
+                    <h3>Coleta de Eletrônicos</h3>
+                    <p><strong>Centro de Reciclagem Tecnológica</strong></p>
+                    <p>Rua Exemplo, 123 - Centro</p>
+                    <p>Segunda a Sexta: 8h às 18h</p>
+                    <p>Aceita: Computadores, celulares, pilhas e baterias</p>
+                </div>
+                <div class="tip-card">
+                    <h3>Materiais Recicláveis</h3>
+                    <p><strong>Cooperativa EcoVida</strong></p>
+                    <p>Av. Sustentável, 456 - Zona Sul</p>
+                    <p>Segunda a Sábado: 8h às 17h</p>
+                    <p>Aceita: Papel, plástico, vidro e metal</p>
+                </div>
+                <div class="tip-card">
+                    <h3>Óleo de Cozinha</h3>
+                    <p><strong>Posto EcoBem</strong></p>
+                    <p>Rua Verde, 789 - Zona Norte</p>
+                    <p>Todos os dias: 7h às 20h</p>
+                    <p>Aceita: Óleo de cozinha usado em garrafas PET</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>EcoConsciente</h3>
+                <p>Uma iniciativa para promover o consumo sustentável e práticas ambientalmente responsáveis em nossa comunidade.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Links Úteis</h3>
+                <ul>
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#dicas">Dicas Sustentáveis</a></li>
+                    <li><a href="#calculadora">Calculadora Ecológica</a></li>
+                    <li><a href="#locais">Pontos de Reciclagem</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contato</h3>
+                <p>Email: contato@ecoconsciente.com.br</p>
+                <p>Telefone: (00) 1234-5678</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 EcoConsciente. Todos os direitos reservados.</p>
+            <p>Projeto desenvolvido para o curso de Ciência da Computação - ODS 12</p>
+        </div>
+    </footer>
+    
+    <script>
+        function calcularPegada() {
+            const agua = parseInt(document.getElementById('consumo-agua').value) || 0;
+            const energia = parseInt(document.getElementById('consumo-energia').value) || 0;
+            const carne = parseInt(document.getElementById('consumo-carne').value);
+            const transporte = parseInt(document.getElementById('transporte').value);
+            const reciclagem = parseInt(document.getElementById('reciclagem').value);
+            
+            let pontos = 0;
+            
+            // Água
+            if (agua > 15) pontos += 4;
+            else if (agua > 10) pontos += 3;
+            else if (agua > 6) pontos += 2;
+            else if (agua > 3) pontos += 1;
+            
+            // Energia
+            if (energia > 300) pontos += 4;
+            else if (energia > 200) pontos += 3;
+            else if (energia > 100) pontos += 2;
+            else if (energia > 50) pontos += 1;
+            
+            // Adiciona os valores dos selects
+            pontos += carne;
+            pontos += transporte;
+            pontos += reciclagem;
+            
+            const resultado = document.getElementById('resultado');
+            const valorPegada = document.getElementById('valor-pegada');
+            const feedback = document.getElementById('feedback');
+            
+            valorPegada.textContent = pontos;
+            
+            if (pontos <= 5) {
+                feedback.textContent = "Parabéns! Seus hábitos são muito sustentáveis. Continue assim!";
+            } else if (pontos <= 10) {
+                feedback.textContent = "Bom trabalho! Você já tem bons hábitos, mas ainda pode melhorar em alguns aspectos.";
+            } else if (pontos <= 15) {
+                feedback.textContent = "Seus hábitos têm um impacto moderado. Considere as dicas do nosso site para reduzir sua pegada.";
+            } else {
+                feedback.textContent = "Sua pegada ecológica é alta. Recomendamos revisar seus hábitos de consumo com urgência.";
+            }
+            
+            resultado.style.display = "block";
+        }
+    </script>
+</body>
+</html>
